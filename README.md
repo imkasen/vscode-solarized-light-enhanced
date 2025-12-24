@@ -1,12 +1,14 @@
-# VSCode Mixed Light Theme
+# VSCode Solarized Light Enhanced Theme
 
-A mixed Light theme for Visual Studio Code.
+A enhanced solarized light theme for Visual Studio Code.
 
 ## Screenshot
 
-![Mixed Solarized Light](images/mixed_solarized_light.png)
+<div align="center">
+<img src="images/screenshot.png" alt="Solarized Light Enhanced" width="450" />
+</div>
 
-## Thanks
+## Inspired By
 
 - [Solarized](https://github.com/altercation/solarized)
 - [Better Solarized](https://github.com/edheltzel/vscode-better-solarized)

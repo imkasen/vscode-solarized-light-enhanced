@@ -1,9 +1,9 @@
 {
-  "name": "vscode-mixed-light-theme",
-  "displayName": "Mixed Light",
-  "description": "A mixed light theme for Visual Studio Code.",
+  "name": "vscode-solarized-light-enhanced",
+  "displayName": "Solarized Light Enhanced",
+  "description": "A enhanced solarized light theme for Visual Studio Code.",
   "publisher": "imkasen",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.93.0"
@@ -12,8 +12,6 @@
     "Themes"
   ],
   "keywords": [
-    "atom",
-    "one light",
     "light",
     "solarized",
     "solarized light"
@@ -21,15 +19,15 @@
   "icon": "icon.jpg",
   "repository": {
     "type": "git",
-    "url": "https://github.com/imkasen/vscode-mixed-light-theme"
+    "url": "https://github.com/imkasen/vscode-solarized-light-enhanced"
   },
-  "homepage": "https://github.com/imkasen/vscode-mixed-light-theme",
+  "homepage": "https://github.com/imkasen/vscode-solarized-light-enhanced",
   "contributes": {
     "themes": [
       {
-        "label": "Mixed Solarized Light",
+        "label": "Solarized Light Enhanced",
         "uiTheme": "vs",
-        "path": "./themes/mixed-solarized-light-color-theme.json"
+        "path": "./themes/solarized-light-enhanced-color-theme.json"
       }
     ]
   }

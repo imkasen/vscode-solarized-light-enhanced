@@ -4,6 +4,11 @@ All notable changes to the extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Version 0.5.0
+
+- Change project name to "vscode-solarized-light-enhanced".
+- Make sure the font style of string prefix is bold, e.g. 'f' in f-string...
+
 ## Version 0.4.0
 
 - Use a lighter selection background color.

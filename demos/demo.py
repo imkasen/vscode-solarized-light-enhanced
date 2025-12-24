@@ -23,15 +23,13 @@ none_var: None = None
 # Python 3.9 and below (using Union)
 from typing import Dict, List, Set, Tuple, Union
 
-integer_var: int = 10
-float_var: float = 3.14159
-string_var: str = "Hello, world!"
-boolean_var: bool = True
 list_var: List[Union[int, str, float]] = [1, 2, 3, "four", 5.0]
 tuple_var: Tuple[int, str, float] = (1, "two", 3.0)
 dictionary_var: Dict[str, Union[str, int]] = {"key1": "value1", "key2": 2}
 set_var: Set[int] = {1, 2, 3}
-none_var: None = None
+
+r"\n"
+b"hello"
 
 # String Formatting
 name = "John"
