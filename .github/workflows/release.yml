@@ -21,8 +21,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install dependencies
+        run: npm install -g @vscode/vsce
+
       - name: Package Extension
-        run: npx -p @vscode/vsce package
+        run: vsce package
 
       - name: Create Release
         id: create_release
