@@ -2,8 +2,6 @@
 
 ## 1. Key-Value Pairs
 key = "value"
-bare_key = "bare value"
-quoted_key_with_space = "quoted value with space"
 "127.0.0.1" = "IP address as key"
 
 ## 2. Strings

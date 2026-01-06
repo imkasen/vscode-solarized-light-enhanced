@@ -1,8 +1,10 @@
 # Change Log
 
-All notable changes to the extension will be documented in this file.
+## Version 0.6.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Refactor color configurations.
+- Update demo code files.
+- Optimize GitHub Action configuration file.
 
 ## Version 0.5.0
 

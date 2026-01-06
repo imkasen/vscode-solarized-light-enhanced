@@ -12,7 +12,8 @@
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--disable-extension=ms-python.pylint",
-        "--disable-extension=charliermarsh.ruff"
+        "--disable-extension=charliermarsh.ruff",
+        "--disable-extension=davidanson.vscode-markdownlint"
       ]
     }
   ]

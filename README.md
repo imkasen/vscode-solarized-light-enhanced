@@ -1,11 +1,14 @@
 # VSCode Solarized Light Enhanced Theme
 
-A enhanced solarized light theme for Visual Studio Code.
+An enhanced solarized light theme for Visual Studio Code.
 
 ## Screenshot
 
+> [!tip]
+> Recommend using [Maple Mono](https://github.com/subframe7536/maple-font) font.
+
 <div align="center">
-<img src="images/screenshot.png" alt="Solarized Light Enhanced" width="450" />
+<img src="resources/screenshot.jpg" alt="Solarized Light Enhanced" width="450" />
 </div>
 
 ## Inspired By

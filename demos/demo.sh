@@ -5,14 +5,15 @@
 # Variables
 name="John Doe"
 age=30
-pi=3.14159
 
 # String manipulation
 greeting="Hello, $name!"
-echo $greeting
-echo "Your name is ${name^^} and your age is ${age}."
+echo "$greeting"
+echo "Your name is ${name} and your age is ${age}."
 
 # Arithmetic operations
+a=1
+b=2
 result=$((a + b))
 echo "Result of addition: $result"
 
@@ -31,7 +32,7 @@ fi
 
 # Loops
 for i in {1..5}; do
-  echo $i
+  echo "$i"
 done
 
 j=0
@@ -64,10 +65,10 @@ greet "John"
 # Arrays
 fruits=("apple" "banana" "orange")
 echo "First fruit: ${fruits[0]}"
-echo "All fruits: ${fruits[@]}"
+echo "All fruits: ${fruits[*]}"
 
 # Input/Output
-read -p "Enter your name: " user_name
+read -rp "Enter your name: " user_name
 echo "Hello, $user_name!"
 
 # File operations
@@ -82,7 +83,7 @@ ls -l > file_list.txt
 wc -l < file_list.txt
 
 # Piping
-grep "pattern" myfile.txt | wc -l
+echo "Hello, World!" | grep "World"
 
 # Here document
 cat << EOF > myfile.txt

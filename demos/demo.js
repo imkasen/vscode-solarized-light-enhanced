@@ -1,247 +1,189 @@
-// demo.js - JavaScript syntax showcase
+"use strict";
 
-// Variables and Data Types
-let integerVar = 10;
-const floatVar = 3.14159;
-var stringVar = "Hello, world!";
-let booleanVar = true;
-let undefinedVar;
-let nullVar = null;
-let symbolVar = Symbol("mySymbol");
-let bigIntVar = 1234567890123456789012345678901234567890n;
+import * as fs from "fs";
+import { resolve as pathResolve } from "path";
 
-// Arrays
-let intArray = [1, 2, 3, 4, 5];
+// ----------------------------------------------------------------------------
+// 1. Primitive Literals & Variables
+// ----------------------------------------------------------------------------
+var varLegacy = "Old school";
+let letModern = "Single quoted string";
+const CONST_UPPER = true;
+const isNull = null;
+const isUndefined = undefined;
 
-// Objects
-let myObject = {
-  name: "John",
-  age: 30,
-  city: "New York",
+// Numbers
+const integer = 42;
+const float = 3.14159;
+const scientific = 1e4;
+const hex = 0xff_00_c0; // Hex with separators
+const binary = 0b1010_0001; // Binary
+const octal = 0o744; // Octal
+const bigInt = 9007199254740991n; // BigInt
+
+// Strings & Templates
+const escaped = 'Line 1\nLine 2\tTabbed "Quote"';
+const dynamicVal = "dynamic";
+const templateLiteral = `String with ${dynamicVal} interpolation`;
+const taggedTemplate = html`<div>${templateLiteral}</div>`; // Tagged template
+
+// ----------------------------------------------------------------------------
+// 2. Regular Expressions
+// ----------------------------------------------------------------------------
+const regexLiteral = /^[a-z0-9]+$/i;
+const regexObject = new RegExp("ab+c", "gm");
+// Named capture groups & lookbehind
+const complexRegex = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})(?<=date)/;
+
+// ----------------------------------------------------------------------------
+// 3. Objects, Arrays & Destructuring
+// ----------------------------------------------------------------------------
+const symbolKey = Symbol("unique");
+
+const settings = {
+  id: 1,
+  [symbolKey]: "Hidden", // Computed property
+  isEnabled: true,
+  calculate() {
+    // Method shorthand
+    return this.id * 2;
+  },
+  // Spread operator
+  ...{ nested: true },
 };
 
-// Operators
-let a = 10;
-let b = 5;
+// Destructuring with renaming and default values
+const { id: userId, isEnabled = false } = settings;
+const [firstItem, ...restItems] = [1, 2, 3, 4];
 
-// Control Flow
-if (a > b) {
-  console.log("a is greater than b");
-} else if (a < b) {
-  console.log("a is less than b");
-} else {
-  console.log("a is equal to b");
-}
+// ----------------------------------------------------------------------------
+// 4. Operators & Control Flow
+// ----------------------------------------------------------------------------
+const a = 5,
+  b = 10;
+let result = 0;
 
-for (let i = 0; i < 5; i++) {
-  console.log(i);
-}
+// Arithmetic & Bitwise
+result = ((a + b) * (b - a)) / 2;
+result = (a << 2) | ((b & 1) ^ ~a);
 
-let j = 0;
-while (j < 5) {
-  console.log(j);
-  j++;
-}
+// Logical Assignment (ES2021)
+let x = null;
+x ??= "default"; // Nullish coalescing assignment
+x ||= "fallback"; // OR assignment
+x &&= "modify"; // AND assignment
 
-let k = 0;
-do {
-  console.log(k);
-  k++;
-} while (k < 5);
+// Ternary & Nullish Coalescing
+const status = a > b ? "Active" : "Inactive";
+const value = x ?? "Nullish Fallback";
 
-switch (a) {
-  case 10:
-    console.log("a is 10");
-    break;
-  case 20:
-    console.log("a is 20");
-    break;
-  default:
-    console.log("a is neither 10 nor 20");
-}
+// Optional Chaining
+const street = settings?.address?.street;
 
-// Functions
-function add(x, y) {
-  return x + y;
-}
-
-let sum = add(5, 3);
-console.log("Sum:", sum);
-
-// Arrow Functions
-let multiply = (x, y) => x * y;
-let product = multiply(5, 3);
-console.log("Product:", product);
-
-// Classes
-class Dog {
-  constructor(name, breed) {
-    this.name = name;
-    this.breed = breed;
-  }
-
-  bark() {
-    console.log("Woof!");
-  }
-}
-
-let myDog = new Dog("Buddy", "Golden Retriever");
-myDog.bark();
-
-// Promises
-let myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("Promise resolved!");
-  }, 2000);
-});
-
-myPromise.then((value) => console.log(value));
-
-// Async/Await
-async function myAsyncFunction() {
-  let value = await myPromise;
-  console.log("Async/Await:", value);
-}
-
-myAsyncFunction();
-
-// Modules (ES6+)
-// import { myFunction } from './myModule.js';
-// myFunction();
-
-// Error Handling
+// Control Structures
 try {
-  // Code that might throw an error
-  let result = 10 / 0;
-} catch (error) {
-  console.error("Error:", error.message);
-} finally {
-  console.log("Finally block executed.");
-}
-
-// Regular Expressions
-let text = "The quick brown fox jumps over the lazy dog.";
-let pattern = /brown/;
-let result = pattern.test(text);
-console.log("Regex result:", result);
-
-// Date and Time
-let currentDate = new Date();
-console.log("Current date:", currentDate);
-
-// String Manipulation
-let str = "Hello, world!";
-console.log("Length of string:", str.length);
-console.log("String in uppercase:", str.toUpperCase());
-console.log("String in lowercase:", str.toLowerCase());
-console.log("String contains 'world':", str.includes("world"));
-
-// DOM Manipulation (if in browser environment)
-// let myElement = document.getElementById("myElement");
-// myElement.innerHTML = "New content";
-
-// JSON
-let myJson = {
-  name: "John",
-  age: 30,
-  city: "New York",
-};
-
-let jsonString = JSON.stringify(myJson);
-console.log("JSON string:", jsonString);
-
-let parsedJson = JSON.parse(jsonString);
-console.log("Parsed JSON:", parsedJson);
-
-// Template Literals
-let name = "John";
-let age = 30;
-let message = `My name is ${name} and I am ${age} years old.`;
-console.log(message);
-
-// Destructuring
-let person = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 30,
-};
-
-let { firstName, lastName } = person;
-console.log("First name:", firstName);
-console.log("Last name:", lastName);
-
-// Spread Syntax
-let numbers = [1, 2, 3];
-let moreNumbers = [...numbers, 4, 5];
-console.log("Spread syntax:", moreNumbers);
-
-// Rest Parameters
-function sumNumbers(...numbers) {
-  let sum = 0;
-  for (let number of numbers) {
-    sum += number;
+  if (a !== b && b >= 10) {
+    throw new Error("Validation failed");
+  } else if (a === 0) {
+    // do nothing
+  } else {
+    switch (status) {
+      case "Active":
+        break;
+      default:
+        console.log("Unknown");
+    }
   }
-  return sum;
+} catch (err) {
+  console.error(err);
+} finally {
+  // Loop labels
+  outerLoop: for (let i = 0; i < 5; i++) {
+    while (result > 0) {
+      result--;
+      if (result === 2) continue outerLoop;
+    }
+  }
 }
 
-let total = sumNumbers(1, 2, 3, 4, 5);
-console.log("Rest parameters:", total);
+// ----------------------------------------------------------------------------
+// 5. Functions (Arrow, Generator, Async)
+// ----------------------------------------------------------------------------
 
-// Map and Set
-let myMap = new Map();
-myMap.set("key1", "value1");
-myMap.set("key2", "value2");
-
-let mySet = new Set();
-mySet.add(1);
-mySet.add(2);
-mySet.add(3);
-
-// Generators
-function* myGenerator() {
-  yield 1;
-  yield 2;
-  yield 3;
+// Function Declaration
+function legacyFunc(p1, p2) {
+  return arguments.length;
 }
 
-let generator = myGenerator();
-console.log(generator.next().value); // 1
-console.log(generator.next().value); // 2
-console.log(generator.next().value); // 3
+// Arrow Function (Implicit return)
+const arrowAdd = (a, b) => a + b;
 
-// Iterators
-let myIterable = {
-  [Symbol.iterator]() {
-    let i = 0;
-    return {
-      next() {
-        if (i < 3) {
-          return { value: i++, done: false };
-        } else {
-          return { done: true };
-        }
-      },
-    };
-  },
+// Async Arrow with Block
+const fetchData = async (url) => {
+  try {
+    const resp = await fetch(url);
+    return await resp.json();
+  } catch {
+    return null;
+  }
 };
 
-for (let value of myIterable) {
-  console.log(value);
+// Generator Function
+function* idGenerator() {
+  let id = 0;
+  while (true) yield ++id;
 }
 
-// Proxy
-let myTarget = {};
-let myProxy = new Proxy(myTarget, {
-  get(target, prop, receiver) {
-    console.log(`Getting property ${prop}`);
-    return target[prop];
-  },
-  set(target, prop, value, receiver) {
-    console.log(`Setting property ${prop} to ${value}`);
-    target[prop] = value;
-    return true;
-  },
-});
+// ----------------------------------------------------------------------------
+// 6. Classes (ES6+ and Modern Features)
+// ----------------------------------------------------------------------------
 
-myProxy.name = "John";
-console.log(myProxy.name);
+class User {
+  // Static Fields
+  static MAX_USERS = 1000;
+  static #internalCount = 0; // Private static
+
+  // Public Field
+  role = "guest";
+
+  // Private Field
+  #passwordHash;
+
+  constructor(username, password) {
+    this.username = username;
+    this.#passwordHash = this.#encrypt(password);
+    User.#internalCount++;
+  }
+
+  // Getter & Setter
+  get password() {
+    return "********";
+  }
+  set password(val) {
+    this.#passwordHash = this.#encrypt(val);
+  }
+
+  // Private Method
+  #encrypt(str) {
+    return str.split("").reverse().join("");
+  }
+
+  // Static Block (ES2022)
+  static {
+    console.log("User class loaded");
+  }
+
+  login() {
+    console.log(`${this.username} logged in.`);
+  }
+}
+
+// Inheritance
+class Admin extends User {
+  constructor(name, pass) {
+    super(name, pass);
+    this.role = "admin";
+    // Super access
+    super.login();
+  }
+}

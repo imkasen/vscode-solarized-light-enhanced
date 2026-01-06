@@ -20,7 +20,7 @@ Here are some headings of different levels:
 
 ## Emphasis
 
-You can emphasize text using **bold** or *italics*.
+You can emphasize text using **bold** / __bold2__ or *italics* / _italics2_.
 
 ## Lists
 
@@ -32,6 +32,9 @@ You can emphasize text using **bold** or *italics*.
   - Subitem 2.2
 - Item 3
 
+* Item 1
+* Item 2
+
 ### Ordered Lists
 
 1. First item
@@ -40,33 +43,43 @@ You can emphasize text using **bold** or *italics*.
 
 ## Links
 
-You can create links like this: [Link to Google](https://www.google.com).
+You can create links like this: [Markdown Guide Basic Syntax](https://www.markdownguide.org/basic-syntax/).
 
 ## Images
 
-You can embed images like this: ![Alt text](image.jpg)
+You can embed images like this: ![Image Description](image.jpg)
 
 ## Code Blocks
 
 You can display code blocks using backticks:
 
-``` js
-function myFunction() {
-    console.log("Hello, world!");
+```js
+function hello() {
+  console.log("Hello, world!");
 }
 ```
+
+## Inline Code
+
+You can use inline code like this: `console.log("Hello, world!");`
 
 ## Blockquotes
 
 You can create blockquotes using the `>` symbol:
 
 > This is a blockquote.
+>
+> Another line in the blockquote.
 
 ## Horizontal Rules
 
 You can create horizontal rules using three or more hyphens, asterisks, or underscores:
 
 ---
+
+***
+
+___
 
 ## Tables
 
@@ -90,28 +103,14 @@ You can create footnotes like this[^1].
 
 [^1]: This is the content of the footnote.
 
-## Definition Lists
-
-Term 1
-: Definition 1
-
-Term 2
-: Definition 2
-
 ## Strikethrough
 
-You can strikethrough text using two tildes: ~~strikethrough~~
+You can strikethrough text using two tildes: ~~strikethrough~~.
 
-## Emojis
+## HTML
 
-You can use emojis like this: :smile: :heart: :thumbsup:
-
-## Inline HTML
-
-You can use inline HTML like this: `<p>This is a paragraph.</p>`
+This **word** is bold. This <em>word</em> is italic.
 
 ## Escaping Characters
 
 You can escape special characters using backslashes: \* \` \_ \{ \} \[ \] \( \) \# \+ \- \. \!
-
-This is a demonstration of various Markdown syntax elements. You can find more information about Markdown syntax online.

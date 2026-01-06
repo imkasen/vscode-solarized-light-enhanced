@@ -4,13 +4,14 @@
   "semanticHighlighting": true,
   "semanticTokenColors": {
     "enumMember": {
-      "foreground": "#00978A"
+      "foreground": "#53676D"
     },
     "module": {
       "foreground": "#C25D1E"
     },
   },
   "tokenColors": [
+    // ==== General ====
     {
       "name": "Invalid",
       "scope": [
@@ -23,8 +24,8 @@
     {
       "name": "Comments",
       "scope": [
-        "comment",
-        "punctuation.definition.comment"
+        "comment", // comment text
+        "punctuation.definition.comment" // comment punctuation, e.g. ';' in ini
       ],
       "settings": {
         "foreground": "#93A1A1",
@@ -35,21 +36,10 @@
       "name": "Keyword, Storage",
       "scope": [
         "keyword",
-        "storage", // e.g. 'def'，'nonlocal' in python
+        "storage", // e.g. 'def'，'nonlocal' in python; 'PRIMARY KEY' in SQL
       ],
       "settings": {
         "foreground": "#8762C6",
-      }
-    },
-    {
-      "name": "Keyword Other, Number Suffix",
-      "scope": [
-        "keyword.other.unit", // e.g. '3.14159f' in c
-        "storage.type.numeric" // e.g. '123n' in js
-      ],
-      "settings": {
-        "foreground": "#009C8F",
-        "fontStyle": "italic"
       }
     },
     {
@@ -66,24 +56,24 @@
       }
     },
     {
-      // e.g. '@classmethod', '@decorator', '@property' in python
-      "name": "Python @ Decorator",
+      "name": "Escape Characters",
       "scope": [
-        "punctuation.definition.decorator.python",
+        "constant.character.escape" // e.g. '\n'
       ],
       "settings": {
-        "foreground": "#268BD2",
+        "foreground": "#2AA198",
         "fontStyle": "bold"
       }
     },
     {
-      // e.g. make 'f' bold in f-string, 'r' in raw string, 'b' in byte string...
-      "name": "Python Bold String Prefix",
+      "name": "Suffix",
       "scope": [
-        "storage.type.string.python"
+        "keyword.other.unit", // e.g. '3.14159f' in c
+        "storage.type.numeric" // e.g. '123n' in js
       ],
       "settings": {
-        "fontStyle": "bold"
+        "foreground": "#009C8F",
+        "fontStyle": "italic"
       }
     },
     {
@@ -98,63 +88,7 @@
       }
     },
     {
-      "name": "Escape Characters",
-      "scope": [
-        "constant.character.escape" // e.g. '\n'
-      ],
-      "settings": {
-        "foreground": "#2AA198",
-        "fontStyle": "bold"
-      }
-    },
-    {
-      "name": "Variable",
-      "scope": [
-        "variable"
-      ],
-      "settings": {
-        "foreground": "#53676D",
-        "fontStyle": "" // make sure it has no font style
-      }
-    },
-    {
-      "name": "Variable Language",
-      "scope": [
-        "variable.language" // e.g. '*' of 'java.util.*' in java
-      ],
-      "settings": {
-        "foreground": "#DC322F"
-      }
-    },
-    {
-      "name": "Other Variable",
-      "scope": [
-        "support.other.variable", // e.g. 'console' in js
-      ],
-      "settings": {
-        "foreground": "#CF4B56"
-      }
-    },
-    {
-      "name": "Parameter",
-      "scope": [
-        "variable.parameter",
-      ],
-      "settings": {
-        "foreground": "#657B83",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Python Self Parameter in Class",
-      "scope": "variable.parameter.function.language.special.self.python",
-      "settings": {
-        "foreground": "#C25D1E",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Number, Constant",
+      "name": "Constant",
       "scope": [
         "constant",
         "variable.other.constant", // constant variable
@@ -163,6 +97,15 @@
       ],
       "settings": {
         "foreground": "#CB4B16"
+      }
+    },
+    {
+      "name": "Number",
+      "scope": [
+        "constant.numeric"
+      ],
+      "settings": {
+        "foreground": "#C25D1E"
       }
     },
     {
@@ -194,6 +137,63 @@
       }
     },
     {
+      "name": "Variable",
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#53676D",
+        "fontStyle": "" // make sure it has no font style
+      }
+    },
+    {
+      "name": "Variable Language",
+      "scope": [
+        "variable.language" // e.g. 'this' of 'this.id' in js, '*' of 'java.util.*' in java
+      ],
+      "settings": {
+        "foreground": "#DC322F"
+      }
+    },
+    {
+      "name": "Other Variable",
+      "scope": [
+        "support.other.variable", // e.g. 'console' in js
+      ],
+      "settings": {
+        "foreground": "#CF4B56"
+      }
+    },
+    {
+      "name": "Parameter",
+      "scope": [
+        "variable.parameter",
+      ],
+      "settings": {
+        "foreground": "#657B83",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Label",
+      "scope": [
+        "entity.name.label"
+      ],
+      "settings": {
+        "foreground": "#53676D",
+      }
+    },
+    {
+      "name": "Type, Namespaces",
+      "scope": [
+        "entity.name.type", // e.g 'React' of 'React.Component' in jsx
+        "entity.name.namespace" // e.g. namespace variable in cpp
+      ],
+      "settings": {
+        "foreground": "#B58900"
+      }
+    },
+    {
       "name": "Function",
       "scope": [
         "entity.name.function",
@@ -216,36 +216,18 @@
       }
     },
     {
-      "name": "Support Function JS",
-      "scope": [
-        "support.function.js", // e.g. 'Symbol()' in js
-      ],
-      "settings": {
-        "foreground": "#268BD2",
-      }
-    },
-    {
       "name": "Class",
       "scope": [
         "entity.name.class",
         "entity.name.type.class",
         "support.type",
-        "support.class",
+        "support.class", // e.g. 'Error' in js
       ],
       "settings": {
         "foreground": "#B58900"
       }
     },
-    {
-      "name": "Type, Namespaces",
-      "scope": [
-        "entity.name.type",
-        "entity.name.namespace" // e.g. namespace variable in cpp
-      ],
-      "settings": {
-        "foreground": "#B58900"
-      }
-    },
+    // ==== Java ====
     {
       "name": "Enum Java",
       "scope": [
@@ -255,8 +237,77 @@
         "foreground": "#00978A"
       }
     },
+    // ==== Python ====
     {
-      "name": "Tag in HTML CSS",
+      "name": "Source",
+      "scope": [
+        "source.python"
+      ],
+      "settings": {
+        "foreground": "#B58900",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Magic Variable",
+      "scope": [
+        "support.variable.magic.python" // e.g. '__name__' in python
+      ],
+      "settings": {
+        "foreground": "#53676D",
+      }
+    },
+    {
+      "name": "Python Bold String Prefix",
+      "scope": [
+        "storage.type.string.python" // e.g. make 'f' bold in f-string, 'r' in raw string, 'b' in byte string...
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Python @ Decorator",
+      "scope": [
+        "punctuation.definition.decorator.python", // e.g. '@classmethod', '@decorator', '@property' in python
+      ],
+      "settings": {
+        "foreground": "#268BD2",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Python 'Self' in Class",
+      "scope": "variable.parameter.function.language.special.self.python",
+      "settings": {
+        "foreground": "#C25D1E",
+        "fontStyle": "italic"
+      }
+    },
+    // ==== JavaScript ====
+    {
+      "name": "JS Support Function",
+      "scope": [
+        "support.function.js", // e.g. 'fetch()' in js
+        "meta.class.js", // e.g. private method name '#encrypt' in js
+      ],
+      "settings": {
+        "foreground": "#268BD2",
+      }
+    },
+    // ==== SQL ====
+    {
+      "name": "SQL",
+      "scope": [
+        "source.sql"
+      ],
+      "settings": {
+        "foreground": "#53676D",
+      }
+    },
+    // ==== HTML ====
+    {
+      "name": "HTML Tag",
       "scope": [
         "entity.name.tag",
       ],
@@ -265,46 +316,87 @@
       }
     },
     {
-      "name": "Attributes in HTML CSS",
+      "name": "HTML Attributes",
       "scope": [
         "entity.other.attribute-name",
-        "meta.selector"
       ],
       "settings": {
         "foreground": "#6C71C4"
       }
     },
     {
-      "name": "Text in HTML",
+      "name": "HTML Text",
       "scope": [
         "text.html.derivative", // e.g. texts in elements
+        "meta.jsx",
         "text.svelte",
-        "meta.jsx"
       ],
       "settings": {
         "foreground": "#53676D"
       }
     },
+    // ==== CSS ====
     {
-      "name": "Markdown Heading Text",
+      "name": "CSS Tag",
       "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#489100",
-      }
-    },
-    {
-      "name": "Markdown Heading Punctuation #",
-      "scope": [
-        "punctuation.definition.heading.markdown"
+        "entity.name.tag.css",
       ],
       "settings": {
         "foreground": "#CF4B56"
       }
     },
     {
-      "name": "Text in Markdown",
+      "name": "CSS Attributes",
+      "scope": [
+        "entity.other.attribute-name.css",
+        "entity.other.attribute-name.id.css",
+        "entity.other.attribute-name.class.css",
+        "entity.other.attribute-name.pseudo-class.css",
+        "entity.other.attribute-name.pseudo-element.css"
+      ],
+      "settings": {
+        "foreground": "#6C71C4"
+      }
+    },
+    {
+      "name": "CSS Keyframe",
+      "scope": [
+        "entity.other.keyframe-offset.css"
+      ],
+      "settings": {
+        "foreground": "#CF4B56"
+      }
+    },
+    {
+      "name": "CSS Property Value",
+      "scope": [
+        "meta.property-value.css" // e.g ...: property-value;
+      ],
+      "settings": {
+        "foreground": "#CB4B16"
+      }
+    },
+    // ==== Markdown ====
+    {
+      "name": "Markdown Heading Text",
+      "scope": [
+        "markup.heading.markdown"
+      ],
+      "settings": {
+        "foreground": "#489100",
+      }
+    },
+    {
+      "name": "Markdown Heading Punctuation",
+      "scope": [
+        "punctuation.definition.heading.markdown" // #
+      ],
+      "settings": {
+        "foreground": "#CF4B56"
+      }
+    },
+    {
+      "name": "Markdown Text",
       "scope": [
         "text.html.markdown"
       ],
@@ -313,18 +405,36 @@
       }
     },
     {
-      "name": "Markdown List Punctuation", // e.g. '-', '1.'
+      "name": "Markdown Bold",
       "scope": [
-        "punctuation.definition.list.begin.markdown"
+        "markup.bold.markdown" // e.g. **bold**, __bold__
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Markdown Italics", // e.g. *italic*, _italic_
+      "scope": [
+        "markup.italic.markdown"
+      ],
+      "settings": {
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Markdown List Punctuation",
+      "scope": [
+        "punctuation.definition.list.begin.markdown", // '-', '*', '1.'
       ],
       "settings": {
         "foreground": "#268BD2"
       }
     },
     {
-      "name": "Markdown Link Title", // [title]()
+      "name": "Markdown Link Title",
       "scope": [
-        "string.other.link.title.markdown"
+        "string.other.link.title.markdown" // [title](), [x] ..., [^1]
       ],
       "settings": {
         "foreground": "#268BD2",
@@ -332,9 +442,9 @@
       }
     },
     {
-      "name": "Markdown Image Link Title", // ![title]()
+      "name": "Markdown Image Link Title",
       "scope": [
-        "string.other.link.description.markdown"
+        "string.other.link.description.markdown" // ![title]()
       ],
       "settings": {
         "foreground": "#CF4B56"
@@ -343,7 +453,8 @@
     {
       "name": "Markdown Link",
       "scope": [
-        "markup.underline"
+        "markup.underline.link.markdown", // [](url)
+        "markup.underline.link.image.markdown" // ![](url)
       ],
       "settings": {
         "foreground": "#489100",
@@ -351,55 +462,37 @@
       }
     },
     {
-      "name": "Markdown Bold",
+      "name": "Markdown Code Block Language Tag",
       "scope": [
-        "markup.bold"
+        "fenced_code.block.language.markdown" // e.g. ```js
       ],
       "settings": {
         "fontStyle": "bold"
       }
     },
     {
-      "name": "Markdown Italics",
+      "name": "Markdown Inline Code",
       "scope": [
-        "markup.italic"
-      ],
-      "settings": {
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Markdown Code Block Language Tag", // e.g. '``` js'
-      "scope": [
-        "fenced_code.block.language"
-      ],
-      "settings": {
-        "fontStyle": "bold"
-      }
-    },
-    {
-      "name": "Markdown Quote", // > ...
-      "scope": [
-        "markup.quote"
-      ],
-      "settings": {
-        "foreground": "#93A1A1",
-        "fontStyle": "italic"
-      }
-    },
-    {
-      "name": "Markdown Inline Code", // '`print("hello")`'
-      "scope": [
-        "markup.inline.raw.string.markdown"
+        "markup.inline.raw.string.markdown" // e.g. `print("hello")`
       ],
       "settings": {
         "foreground": "#CB4B16"
       }
     },
     {
-      "name": "Markdown Separator", // '---'
+      "name": "Markdown Quote",
       "scope": [
-        "meta.separator"
+        "markup.quote.markdown" // > ...
+      ],
+      "settings": {
+        "foreground": "#93A1A1",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Markdown Horizontal Rule",
+      "scope": [
+        "meta.separator.markdown" // ---, ***, ___
       ],
       "settings": {
         "foreground": "#93A1A1",
@@ -407,26 +500,100 @@
       }
     },
     {
-      "name": "INI Title",
+      "name": "Markdown Strikethrough",
       "scope": [
-        "entity.name.section.group-title.ini"
+        "markup.strikethrough.markdown" // e.g. ~~strikethrough~~
       ],
       "settings": {
-        "foreground": "#489100",
+        "fontStyle": "strikethrough"
+      }
+    },
+    // ==== TOML ====
+    //
+    // No Configurations needed.
+    //
+    // ==== YAML ====
+    {
+      "name": "YAML Key",
+      "scope": [
+        "entity.name.tag.yaml"
+      ],
+      "settings": {
+        "foreground": "#B58900",
+      }
+    },
+    {
+      "name": "YAML Ancher & Alias",
+      "scope": [
+        "entity.name.type.anchor.yaml",
+        "variable.other.alias.yaml"
+      ],
+      "settings": {
+        "foreground": "#2AA198",
+      }
+    },
+    {
+      "name": "YAML Block Scalar",
+      "scope": [
+        "keyword.control.flow.block-scalar.folded.yaml", // >
+        "keyword.control.flow.block-scalar.literal.yaml" // |
+      ],
+      "settings": {
+        "foreground": "#2AA198",
         "fontStyle": "bold"
       }
     },
+    // ==== INI ====
     {
-      "name": "Value in INI",
+      "name": "INI Title",
       "scope": [
-        "source.ini"
+        "entity.name.section.group-title.ini" // e.g. [title]
       ],
       "settings": {
-        "foreground": "#53676D",
+        "foreground": "#B58900",
       }
     },
     {
-      "name": "Text in XML",
+      "name": "INI Key",
+      "scope": [
+        "keyword.other.definition.ini"
+      ],
+      "settings": {
+        "foreground": "#B58900",
+      }
+    },
+    {
+      "name": "INI Non-string Value",
+      "scope": [
+        "source.ini",
+      ],
+      "settings": {
+        "foreground": "#CB4B16",
+      }
+    },
+    // ==== XML ====
+    {
+      "name": "XML Tag",
+      "scope": [
+        "entity.name.tag.xml",
+        "entity.name.tag.localname.xml"
+      ],
+      "settings": {
+        "foreground": "#CF4B56"
+      }
+    },
+    {
+      "name": "XML Attributes",
+      "scope": [
+        "entity.other.attribute-name.xml",
+        "entity.other.attribute-name.localname.xml"
+      ],
+      "settings": {
+        "foreground": "#6C71C4"
+      }
+    },
+    {
+      "name": "XML Text",
       "scope": [
         "text.xml"
       ],
@@ -434,17 +601,19 @@
         "foreground": "#53676D",
       }
     },
+    // ==== Dockerfile ====
     {
-      "name": "Value in Ignore",
+      "name": "Dockerfile Value",
       "scope": [
-        "source.ignore"
+        "source.dockerfile"
       ],
       "settings": {
-        "foreground": "#53676D",
+        "foreground": "#CB4B16",
       }
     },
+    // ==== Makefile ====
     {
-      "name": "Makefile",
+      "name": "Makefile Value",
       "scope": [
         "source.makefile"
       ],
@@ -452,6 +621,7 @@
         "foreground": "#CB4B16",
       }
     },
+    // ==== CMake ====
     {
       "name": "CMake",
       "scope": [
@@ -461,6 +631,7 @@
         "foreground": "#CB4B16",
       }
     },
+    // ==== Nginx Config ====
     {
       "name": "Nginx Text",
       "scope": [
@@ -491,43 +662,6 @@
         "foreground": "#489100",
       }
     },
-    {
-      "name": "Dockerfile",
-      "scope": [
-        "source.dockerfile"
-      ],
-      "settings": {
-        "foreground": "#CB4B16",
-      }
-    },
-    {
-      "name": "SQL",
-      "scope": [
-        "source.sql"
-      ],
-      "settings": {
-        "foreground": "#53676D",
-      }
-    },
-    {
-      "name": "YAML Tag",
-      "scope": [
-        "entity.name.tag.yaml"
-      ],
-      "settings": {
-        "foreground": "#268bd2",
-      }
-    },
-    {
-      "name": "YAML Block Scalar", // '|' & '>'
-      "scope": [
-        "keyword.control.flow.block-scalar.folded.yaml",
-        "keyword.control.flow.block-scalar.literal.yaml"
-      ],
-      "settings": {
-        "fontStyle": "bold"
-      }
-    }
   ],
   "colors": {
     // ref: https://code.visualstudio.com/api/references/theme-color
@@ -628,7 +762,7 @@
     // ======== Status Bar Colors ========
     "statusBar.background": "#EEE8D5",
     "statusBar.foreground": "#073642",
-    "statusBar.debuggingBackground": "#EEE8D5",
+    "statusBar.debuggingBackground": "#CB4B16",
     "statusBar.noFolderBackground": "#EEE8D5",
     "statusBarItem.prominentBackground": "#DDD6C1",
     "statusBarItem.prominentHoverBackground": "#DDD6C199",

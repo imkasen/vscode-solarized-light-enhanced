@@ -2,201 +2,201 @@
 
 /* Basic Selectors */
 body {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    color: #333;
-    text-align: center;
+  color: #333;
+  text-align: center;
 }
 
 p {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 #my-id {
-    background-color: #ddd;
-    padding: 20px;
+  background-color: #ddd;
+  padding: 20px;
 }
 
 .my-class {
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
 /* Combinators */
-div>p {
-    font-weight: bold;
+div > p {
+  font-weight: bold;
 }
 
-div+p {
-    color: #666;
+div + p {
+  color: #666;
 }
 
-div~p {
-    font-style: italic;
+div ~ p {
+  font-style: italic;
 }
 
 /* Pseudo-classes */
 a:link {
-    color: blue;
-    text-decoration: none;
+  color: blue;
+  text-decoration: none;
 }
 
 a:visited {
-    color: purple;
+  color: purple;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:active {
-    color: red;
+  color: red;
 }
 
 input:focus {
-    outline: 2px solid blue;
+  outline: 2px solid blue;
 }
 
 li:first-child {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 li:last-child {
-    font-style: italic;
+  font-style: italic;
 }
 
 li:nth-child(even) {
-    background-color: #eee;
+  background-color: #eee;
 }
 
 /* Pseudo-elements */
 p::first-line {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 p::first-letter {
-    font-size: 2em;
-    float: left;
-    margin-right: 10px;
+  font-size: 2em;
+  float: left;
+  margin-right: 10px;
 }
 
 /* Attributes */
 input[type="text"] {
-    width: 200px;
+  width: 200px;
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
+  body {
+    font-size: 14px;
+  }
 
-    h1 {
-        font-size: 2em;
-    }
+  h1 {
+    font-size: 2em;
+  }
 }
 
 /* Animations */
 @keyframes my-animation {
-    from {
-        background-color: red;
-    }
+  from {
+    background-color: red;
+  }
 
-    to {
-        background-color: yellow;
-    }
+  to {
+    background-color: yellow;
+  }
 }
 
 #animated-element {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    animation-name: my-animation;
-    animation-duration: 4s;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: my-animation;
+  animation-duration: 4s;
 }
 
 /* Transitions */
 #transition-element {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    transition: background-color 2s ease;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: background-color 2s ease;
 }
 
 #transition-element:hover {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 /* Variables */
 :root {
-    --primary-color: #4CAF50;
+  --primary-color: #4caf50;
 }
 
 button {
-    background-color: var(--primary-color);
-    color: white;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* Box Model */
 .box {
-    width: 200px;
-    height: 100px;
-    padding: 20px;
-    margin: 30px;
-    border: 2px solid black;
+  width: 200px;
+  height: 100px;
+  padding: 20px;
+  margin: 30px;
+  border: 2px solid black;
 }
 
 /* Flexbox */
 .flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-item {
-    width: 100px;
-    height: 100px;
-    background-color: lightblue;
-    margin: 10px;
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  margin: 10px;
 }
 
 /* Grid Layout */
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 .grid-item {
-    background-color: lightgreen;
-    padding: 20px;
+  background-color: lightgreen;
+  padding: 20px;
 }
 
 /* Transforms */
 #transformed-element {
-    width: 100px;
-    height: 100px;
-    background-color: lightcoral;
-    transform: rotate(45deg) translate(50px, 50px);
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  transform: rotate(45deg) translate(50px, 50px);
 }
 
 /* Filters */
 #filtered-element {
-    width: 200px;
-    height: 100px;
-    background-color: lightyellow;
-    filter: blur(5px) grayscale(50%);
+  width: 200px;
+  height: 100px;
+  background-color: lightyellow;
+  filter: blur(5px) grayscale(50%);
 }

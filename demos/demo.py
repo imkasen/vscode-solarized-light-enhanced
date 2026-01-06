@@ -1,267 +1,180 @@
-# demo.py - Python Code Snippet for Theme Preview
-# pylint: disable=all
+import asyncio
+import sys
+from dataclasses import dataclass
+from enum import Enum, auto
+from typing import Any, Callable, Optional, Union
 
+# ----------------------------------------------------------------------------
+# 1. Literals, Variables & Built-ins
+# ----------------------------------------------------------------------------
 
-# Multiline Comments
+# Constants (Naming convention)
+MAX_RETRIES = 5
+TIMEOUT = 30.5
+
+# Numeric Literals
+integer_val = 42
+float_val = 3.14_159  # Underscore separator
+hex_val = 0xFF_00_AA
+binary_val = 0b1010_0011
+complex_val = 10 + 5j
+
+# String Literals
+simple_str = "Single quoted"
+double_str = "Double quoted"
+docstring = """
+    Multi-line string (Docstring).
+    Often highlighted differently than normal strings.
 """
-This is a multiline comment.
-It can span multiple lines.
-"""
+bytes_literal = b"Bytes data"
+raw_string = r"Raw \n string"
 
-# Variables and Data Types
-# Python 3.10+
-integer_var: int = 10
-float_var: float = 3.14159
-string_var: str = "Hello, world!"
-boolean_var: bool = True
-list_var: list[int | str | float] = [1, 2, 3, "four", 5.0]
-tuple_var: tuple[int, str, float] = (1, "two", 3.0)
-dictionary_var: dict[str, str | int] = {"key1": "value1", "key2": 2}
-set_var: set[int] = {1, 2, 3}
-none_var: None = None
+# F-Strings (Python 3.6+)
+name = "World"
+# Debugging f-string (Python 3.8+)
+formatted = f"Hello {name}, {integer_val=}, Result: {float_val:.2f}"
 
-# Python 3.9 and below (using Union)
-from typing import Dict, List, Set, Tuple, Union
+# Built-in Constants
+flag_true = True
+flag_false = False
+nothing = None
 
-list_var: List[Union[int, str, float]] = [1, 2, 3, "four", 5.0]
-tuple_var: Tuple[int, str, float] = (1, "two", 3.0)
-dictionary_var: Dict[str, Union[str, int]] = {"key1": "value1", "key2": 2}
-set_var: Set[int] = {1, 2, 3}
+# ----------------------------------------------------------------------------
+# 2. Modern Type Hints (Python 3.10/3.12+)
+# ----------------------------------------------------------------------------
 
-r"\n"
-b"hello"
+# Type Alias Statement (Python 3.12+)
+type Point = tuple[float, float]
+type Vector[T] = list[T]  # Generic type alias
 
-# String Formatting
-name = "John"
-age = 30
+# Old style type hint
+StringList = list[str]  # Python 3.9+ lowercase generics
 
-# f-strings (Python 3.6+)
-formatted_string_f = f"Hello, my name is {name} and I am {age} years old."
+# ----------------------------------------------------------------------------
+# 3. Functions, Arguments & Decorators
+# ----------------------------------------------------------------------------
 
-# str.format()
-formatted_string_format = "Hello, my name is {} and I am {} years old.".format(name, age)
+def log_decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Simple decorator example."""
 
-# % operator
-formatted_string_percent = "Hello, my name is %s and I am %d years old." % (name, age)
-
-# Operators
-a = 10
-b = 5
-addition = a + b
-subtraction = a - b
-multiplication = a * b
-division = a / b
-floor_division = a // b
-modulo = a % b
-exponentiation = a**b
-
-# Walrus Operator (Python 3.8+)
-if (n := len(string_var)) > 10:
-    print(f"String is longer than 10 characters: {n}")
-
-# Control Flow
-if a > b:
-    print("a is greater than b")
-elif a < b:
-    print("a is less than b")
-else:
-    print("a is equal to b")
-
-for i in range(5):
-    print(i)
-
-while a > 0:
-    print(a)
-    a -= 1
-
-try:
-    result = 10 / 0
-except ZeroDivisionError as e:
-    print(f"Cannot divide by zero: {e}")
-    raise RuntimeError from e  # Raise from the original exception
-finally:
-    print("This always executes")
-
-with open("file.txt", "w") as f:
-    f.write("Hello from Python!")
-
-
-# Functions
-def greet(name: str) -> None:
-    print(f"Hello, {name}!")
-
-
-greet("World")
-
-
-# Function with variable positional arguments
-def sum_numbers(*args: int) -> int:
-    total = 0
-    for num in args:
-        total += num
-    return total
-
-
-result = sum_numbers(1, 2, 3, 4, 5)
-print(f"Sum: {result}")
-
-
-# Function with variable keyword arguments
-def print_details(**kwargs: str) -> None:
-    for key, value in kwargs.items():
-        print(f"{key}: {value}")
-
-
-print_details(name="John", age="30", city="New York")
-
-
-# Function with positional-only arguments (Python 3.8+)
-def greet_positional(name: str, /, greeting: str = "Hello") -> None:
-    print(f"{greeting}, {name}!")
-
-
-greet_positional("John")  # Valid
-greet_positional(name="John")  # Invalid
-
-
-# Classes
-class Dog:
-    def __init__(self, name: str, breed: str):
-        self.name = name
-        self.breed = breed
-
-    def bark(self) -> None:
-        print("Woof!")
-
-
-my_dog = Dog("Buddy", "Golden Retriever")
-my_dog.bark()
-
-# Modules and Packages
-import math
-import random
-from datetime import datetime
-
-print(math.sqrt(16))
-print(random.randint(1, 10))
-print(datetime.now())
-
-
-# Decorators
-def my_decorator(func):
-    def wrapper():
-        print("Something is happening before the function is called.")
-        func()
-        print("Something is happening after the function is called.")
-
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
     return wrapper
 
+# Positional-only args (/) and Keyword-only args (*)
+@log_decorator
+def complicated_args(p1: int, p2: int, /, standard: int, *, kw1: bool = True) -> int:
+    """
+    Shows Python 3.8+ syntax for argument separators.
+    """
+    result = p1 + p2 + standard
+    return result if kw1 else 0
 
-@my_decorator
-def say_whee():
-    print("Whee!")
-
-
-say_whee()
-
-
-# Generators
-def my_generator(n: int):
-    for i in range(n):
+# Generator
+def range_generator(n: int):
+    i = 0
+    while i < n:
         yield i
+        i += 1
 
+# Lambda
+square = lambda x: x**2
 
-for i in my_generator(5):
-    print(i)
+# ----------------------------------------------------------------------------
+# 4. Classes & Object Oriented
+# ----------------------------------------------------------------------------
 
-# List Comprehensions
-squares = [x**2 for x in range(10)]
-print(squares)
-
-# Lambda Functions
-add = lambda x, y: x + y
-print(add(5, 3))
-
-# Asynchronous Programming (Python 3.5+)
-import asyncio
-
-
-async def my_coroutine():
-    print("Starting coroutine")
-    await asyncio.sleep(1)
-    print("Ending coroutine")
-
-
-asyncio.run(my_coroutine())
-
-
-# Type Hints (Python 3.5+)
-def greeting(name: str) -> str:
-    return f"Hello, {name}"
-
-
-# Context Managers
-class MyContextManager:
-    def __enter__(self):
-        print("Entering context")
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        print("Exiting context")
-
-
-with MyContextManager() as manager:
-    print("Inside context")
-
-# Data Classes (Python 3.7+)
-from dataclasses import dataclass
-
+class Status(Enum):
+    IDLE = auto()
+    RUNNING = auto()
+    ERROR = auto()
 
 @dataclass
-class Point:
-    x: int
-    y: int
+class User:
+    id: int
+    username: str
+    _password: str = "secret"  # Protected convention
 
+    # Magic Methods (Dunder methods)
+    def __str__(self) -> str:
+        return self.username
 
-point = Point(10, 20)
-print(point)
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, User):
+            return NotImplemented
+        return self.id == other.id
 
-# Match-Case (Python 3.10+)
-status = 404
+class Admin(User):
+    def __init__(self, id: int, username: str, level: int):
+        super().__init__(id, username)
+        self.level = level
 
-match status:
-    case 200:
+    @property
+    def is_super(self) -> bool:
+        return self.level > 10
+
+    @is_super.setter
+    def is_super(self, val: bool):
+        pass
+
+# ----------------------------------------------------------------------------
+# 5. Control Flow & Pattern Matching (Python 3.10+)
+# ----------------------------------------------------------------------------
+
+def process_command(command: Union[str, tuple]):
+    # Structural Pattern Matching
+    match command:
+        case "start" | "go":
+            print("Starting...")
+        case "stop":
+            print("Stopping...")
+        case ["move", x, y] if isinstance(x, int):  # Guard clause
+            print(f"Moving to ({x}, {y})")
+        case {"action": action, "value": val}:
+            print(f"Action: {action}, Value: {val}")
+        case _:
+            print("Unknown command")
+
+def logical_flow():
+    # Walrus Operator (Python 3.8+)
+    data = [1, 2, 3]
+    if (n := len(data)) > 2:
+        print(f"List is long: {n} items")
+
+    try:
+        x = 1 / 0
+    except ZeroDivisionError as e:
+        print(f"Error: {e}")
+    except (ValueError, TypeError):
+        pass
+    else:
         print("Success")
-    case 404:
-        print("Not found")
-    case _:
-        print("Unknown status")
+    finally:
+        print("Cleanup")
 
-# Assert
-assert 2 + 2 == 4, "Math is broken!"
+    # Exception Groups (Python 3.11+)
+    try:
+        raise ExceptionGroup("Group", [ValueError("A"), TypeError("B")])
+    except* ValueError:
+        print("Caught ValueErrors")
+    except* TypeError:
+        print("Caught TypeErrors")
 
-# Global and Nonlocal
-global_var = 10
+# ----------------------------------------------------------------------------
+# 6. Async / Await (Asynchronous Programming)
+# ----------------------------------------------------------------------------
 
+async def fetch_data(url: str) -> dict:
+    await asyncio.sleep(0.1)
+    return {"data": "sample"}
 
-def modify_global():
-    global global_var
-    global_var = 20
+async def main():
+    async with asyncio.Lock():
+        result = await fetch_data("http://example.com")
 
+    # Async iterator
+    # async for item in async_generator(): pass
 
-modify_global()
-print(global_var)  # Output: 20
-
-
-def outer_function():
-    nonlocal_var = 10
-
-    def inner_function():
-        nonlocal nonlocal_var
-        nonlocal_var = 20
-
-    inner_function()
-    print(nonlocal_var)  # Output: 20
-
-
-outer_function()
+if __name__ == "__main__":
+    logical_flow()

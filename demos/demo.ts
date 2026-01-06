@@ -1,235 +1,174 @@
-// demo.ts - TypeScript syntax showcase
+// ----------------------------------------------------------------------------
+// 1. Basic Types, Enums & Tuples
+// ----------------------------------------------------------------------------
 
-// Variables and Data Types
-let integerVar: number = 10;
-const floatVar: number = 3.14159;
-var stringVar: string = "Hello, world!";
-let booleanVar: boolean = true;
-let undefinedVar: undefined;
-let nullVar: null = null;
-let anyVar: any = "anything";
-let unknownVar: unknown = "unknown";
-let voidVar: void = undefined;
-let neverVar: never; // Represents the type of values that never occur
+// Enums (often have specific colors)
+enum Direction {
+  Up = 1,
+  Down,
+  Left = "LEFT", // String enum
+  Right = "RIGHT",
+}
 
-// Arrays
-let intArray: number[] = [1, 2, 3, 4, 5];
-let stringArray: string[] = ["apple", "banana", "orange"];
+const enum ConstColors {
+  Red = 0xff0000,
+  Green = 0x00ff00,
+  Blue = 0x0000ff,
+}
 
-// Tuples
-let myTuple: [string, number] = ["hello", 10];
+// Primitives & Tuples
+let isDone: boolean = false;
+let lines: number = 42;
+let nameStr: string = "TypeScript";
+let tuple: [string, number] = ["hello", 10]; // Tuple
+let unionType: string | number | null = "maybe"; // Union type separator
 
-// Enums
-enum Color { Red, Green, Blue }
-let myColor: Color = Color.Green;
+// ----------------------------------------------------------------------------
+// 2. Interfaces & Type Aliases
+// ----------------------------------------------------------------------------
 
-// Objects
-let myObject: { name: string, age: number, city: string } = {
-    name: "John",
-    age: 30,
-    city: "New York"
+type UUID = string;
+
+interface IIdentifiable {
+  readonly id: UUID; // Readonly modifier
+  optional?: string; // Optional modifier
+}
+
+// Intersection Type
+interface ILoggable {
+  log(): void;
+}
+
+// Extending Interfaces
+interface UserSettings extends IIdentifiable, ILoggable {
+  theme: "dark" | "light"; // Literal type
+  [key: string]: any; // Index signature
+  metadata: unknown; // Unknown type
+}
+
+// ----------------------------------------------------------------------------
+// 3. Classes & Access Modifiers
+// ----------------------------------------------------------------------------
+
+abstract class BaseService {
+  abstract start(): void;
+  protected stop(): void {
+    console.log("Stopped");
+  }
+}
+
+// Decorator usage (Experimental/Stage 3)
+@frozen
+class UserService extends BaseService implements IIdentifiable {
+  // Parameter properties (public/private in constructor)
+  constructor(public readonly id: UUID, private _dbConnection: any) {
+    super();
+  }
+
+  // Static properties with access modifiers
+  public static instanceCount: number = 0;
+
+  // Method with specific return type
+  public override start(): void {
+    // 'override' keyword
+    this.log();
+  }
+
+  public log(): void {
+    console.log(`User ${this.id}`);
+  }
+
+  // Assertions
+  public getData(): string {
+    return (this._dbConnection as any).data!; // 'as' and Non-null assertion '!'
+  }
+}
+
+function frozen(constructor: Function) {
+  Object.freeze(constructor);
+  Object.freeze(constructor.prototype);
+}
+
+// ----------------------------------------------------------------------------
+// 4. Generics (The ultimate highlighter test)
+// ----------------------------------------------------------------------------
+
+// Generic Interface
+interface ResponseData<T = any> {
+  status: number;
+  data: T;
+  error?: string;
+}
+
+// Generic Function with Constraints
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+}
+
+const userRes: ResponseData<string> = {
+  status: 200,
+  data: "Success",
 };
 
-// Interfaces
-interface Person {
-    firstName: string;
-    lastName: string;
-    age?: number; // Optional property
-}
-
-let person1: Person = {
-    firstName: "John",
-    lastName: "Doe"
-};
-
-// Classes
-class Dog {
-    name: string;
-    breed: string;
-
-    constructor(name: string, breed: string) {
-        this.name = name;
-        this.breed = breed;
-    }
-
-    bark(): void {
-        console.log("Woof!");
-    }
-}
-
-let myDog: Dog = new Dog("Buddy", "Golden Retriever");
-myDog.bark();
-
-// Generics
-function identity<T>(arg: T): T {
-    return arg;
-}
-
-let myString: string = identity<string>("hello");
-let myNumber: number = identity<number>(10);
-
-// Type Aliases
-type StringOrNumber = string | number;
-let myValue: StringOrNumber = "hello";
-myValue = 10;
-
-// Union and Intersection Types
-let unionType: string | number = "hello";
-unionType = 10;
-
-type User = {
-    name: string;
-    age: number;
-};
-
-type Admin = {
-    name: string;
-    role: string;
-};
-
-let intersectionType: User & Admin = {
-    name: "John",
-    age: 30,
-    role: "administrator"
-};
-
-// Functions
-function add(x: number, y: number): number {
-    return x + y;
-}
-
-let sum: number = add(5, 3);
-console.log("Sum:", sum);
-
-// Arrow Functions
-let multiply = (x: number, y: number): number => x * y;
-let product: number = multiply(5, 3);
-console.log("Product:", product);
-
-// Optional Parameters
-function greet(name: string, greeting?: string): void {
-    console.log(greeting ? `${greeting}, ${name}` : `Hello, ${name}`);
-}
-
-greet("John");
-greet("John", "Good morning");
-
-// Rest Parameters
-function sumNumbers(...numbers: number[]): number {
-    let sum = 0;
-    for (let number of numbers) {
-        sum += number;
-    }
-    return sum;
-}
-
-let total: number = sumNumbers(1, 2, 3, 4, 5);
-console.log("Rest parameters:", total);
+// ----------------------------------------------------------------------------
+// 5. Functions & Overloads
+// ----------------------------------------------------------------------------
 
 // Function Overloads
-function add(a: string, b: string): string;
-function add(a: number, b: number): number;
-function add(a: any, b: any): any {
-    return a + b;
+function padding(all: number): object;
+function padding(topAndBottom: number, leftAndRight: number): object;
+function padding(a: number, b?: number): object {
+  if (b === undefined) return { top: a, bottom: a, left: a, right: a };
+  return { top: a, bottom: a, left: b, right: b };
 }
 
-let stringResult: string = add("hello", "world");
-let numberResult: number = add(5, 3);
-
-// Namespaces
-namespace MyNamespace {
-    export function myFunction(): void {
-        console.log("Hello from MyNamespace");
-    }
+// 'this' parameter typing
+function handleClick(this: HTMLElement, e: Event) {
+  this.innerHTML = "Clicked";
 }
 
-MyNamespace.myFunction();
-
-// Modules (ES6+)
-// import { myFunction } from './myModule';
-// myFunction();
-
-// Decorators
-function log(target: any, key: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
-    descriptor.value = function (...args: any[]) {
-        console.log(`Calling ${key} with arguments: ${args}`);
-        const result = originalMethod.apply(this, args);
-        console.log(`Result of ${key}: ${result}`);
-        return result;
-    };
-    return descriptor;
-}
-
-class MyClass {
-    @log
-    myMethod(arg1: number, arg2: string): number {
-        return arg1 + arg2.length;
-    }
-}
-
-let myInstance = new MyClass();
-myInstance.myMethod(5, "hello");
-
-// Generics with Constraints
-function loggingIdentity<T extends { message: string }>(arg: T): T {
-    console.log(arg.message);
-    return arg;
-}
-
-// Conditional Types
-type MyType<T> = T extends string ? string : number;
-let myStringType: MyType<string> = "hello";
-let myNumberType: MyType<number> = 10;
+// ----------------------------------------------------------------------------
+// 6. Advanced Type Features (Type Gymnastics)
+// ----------------------------------------------------------------------------
 
 // Mapped Types
-type ReadonlyPerson = {
-    readonly [P in keyof Person]: Person[P];
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
 };
 
-let readonlyPerson: ReadonlyPerson = {
-    firstName: "John",
-    lastName: "Doe"
-};
+// Conditional Types
+type TypeName<T> = T extends string ? "string" : T extends number ? "number" : T extends boolean ? "boolean" : "object";
 
-// readonlyPerson.firstName = "Jane"; // Error: Cannot assign to 'firstName' because it is a read-only property.
+// Template Literal Types
+type EventName = "click" | "scroll" | "mousemove";
+type EventHandler = `on${Capitalize<EventName>}`; // "onClick" | "onScroll"...
+
+// Utility usage
+type PartialUser = Partial<UserSettings>;
+
+// ----------------------------------------------------------------------------
+// 7. Modern TS Features (Satisfies, Assertions)
+// ----------------------------------------------------------------------------
+
+// 'satisfies' operator (TS 4.9+)
+const myPalette = {
+  red: [255, 0, 0],
+  green: "#00ff00",
+} satisfies Record<string, string | number[]>;
+
+// 'const' assertions
+const config = {
+  endpoint: "https://api.example.com",
+  retries: 3,
+} as const;
 
 // Type Guards
-function isString(value: any): value is string {
-    return typeof value === 'string';
+function isString(test: any): test is string {
+  return typeof test === "string";
 }
 
-function example(value: any) {
-    if (isString(value)) {
-        console.log(value.toUpperCase());
-    } else {
-        console.log(value.toFixed(2));
-    }
+if (isString(unionType)) {
+  console.log(unionType.toUpperCase()); // TS knows it's a string here
 }
 
-example("hello");
-example(3.14);
-
-// Type Assertions
-let someValue: any = "this is a string";
-let strLength: number = (someValue as string).length;
-
-// Inferring Types
-let message = "hello"; // TypeScript infers the type of message to be string
-
-// Nullish Coalescing Operator
-let user = null;
-let username = user?.name ?? "Guest";
-console.log(username); // Output: Guest
-
-// Optional Chaining
-let user2 = {
-    name: "John",
-    address: {
-        street: "Main St",
-        city: "New York"
-    }
-};
-
-let city = user2?.address?.city;
-console.log(city); // Output: New York
+export { UserService, Direction, type IIdentifiable };

@@ -1,9 +1,9 @@
 {
   "name": "vscode-solarized-light-enhanced",
   "displayName": "Solarized Light Enhanced",
-  "description": "A enhanced solarized light theme for Visual Studio Code.",
+  "description": "An enhanced solarized light theme for Visual Studio Code.",
   "publisher": "imkasen",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "license": "MIT",
   "engines": {
     "vscode": "^1.93.0"
