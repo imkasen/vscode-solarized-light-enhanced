@@ -1,5 +1,13 @@
 # Change Log
 
+## Version 0.6.2
+
+- Update status bar debugging background color.
+
+## Version 0.6.1
+
+- Fix GitHub Action configuration issue.
+
 ## Version 0.6.0
 
 - Refactor color configurations.

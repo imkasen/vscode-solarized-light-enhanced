@@ -762,7 +762,7 @@
     // ======== Status Bar Colors ========
     "statusBar.background": "#EEE8D5",
     "statusBar.foreground": "#073642",
-    "statusBar.debuggingBackground": "#CB4B16",
+    "statusBar.debuggingBackground": "#B58900",
     "statusBar.noFolderBackground": "#EEE8D5",
     "statusBarItem.prominentBackground": "#DDD6C1",
     "statusBarItem.prominentHoverBackground": "#DDD6C199",
