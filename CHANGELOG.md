@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 0.6.3
+
+- Update markdown code block language tag.
+
 ## Version 0.6.2
 
 - Update status bar debugging background color.

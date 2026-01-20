@@ -464,7 +464,8 @@
     {
       "name": "Markdown Code Block Language Tag",
       "scope": [
-        "fenced_code.block.language.markdown" // e.g. ```js
+        "fenced_code.block.language", // special e.g. ```mermaid
+        // "fenced_code.block.language.markdown" // e.g. ```js
       ],
       "settings": {
         "fontStyle": "bold"
